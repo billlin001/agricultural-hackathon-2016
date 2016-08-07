@@ -1,3 +1,5 @@
+package tw.bill.mahout;
+
 import org.apache.mahout.cf.taste.impl.model.file.FileDataModel;
 import org.apache.mahout.cf.taste.impl.neighborhood.ThresholdUserNeighborhood;
 import org.apache.mahout.cf.taste.impl.recommender.GenericUserBasedRecommender;
@@ -9,6 +11,7 @@ import org.apache.mahout.cf.taste.recommender.UserBasedRecommender;
 import org.apache.mahout.cf.taste.similarity.UserSimilarity;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -44,4 +47,12 @@ public class Recommender {
 
         System.out.println("end");
     }
+
+    private static DataModel initDataModel() throws IOException {
+        DataModel result = new FileDataModel(new File("/Users/eddard33/Documents/Hackthon/data.csv"));
+
+        return result;
+    }
 }
+
+
