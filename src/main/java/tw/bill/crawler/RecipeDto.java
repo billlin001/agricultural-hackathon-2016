@@ -13,6 +13,8 @@ public class RecipeDto {
     private Long id;
     private String name;
     private List<String> ingredients = new ArrayList<>();
+    private Long categoryId;
+    private String categoryName;
 
     public Long getId() {
         return id;
@@ -38,8 +40,24 @@ public class RecipeDto {
         this.ingredients = ingredients;
     }
 
+    public Long getCategoryId() {
+        return categoryId;
+    }
+
+    public void setCategoryId(Long categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
-        return String.format("%d,%s,%s", id, name, ingredients.toString().replace(",", "|"));
+        return String.format("%d,%s,%d,%s,%s", categoryId, categoryName, id, name, ingredients.toString().replace(",", "|").replace("[|]", ""));
     }
 }

@@ -17,8 +17,8 @@ public class JSoupHelper {
     private Document document;
 
     public JSoupHelper(String url) throws IOException {
-            System.out.println(String.format("url: %s", url));
-            document = Jsoup.connect(url).get();
+        System.out.println(String.format("url: %s", url));
+        document = Jsoup.connect(url).get();
     }
 
     public String getValue(String selector) {
@@ -37,6 +37,18 @@ public class JSoupHelper {
     public List<String> getLinks(String selector, String host) {
         List<String> results = new ArrayList<>();
         Elements elements = document.select(selector);
+        elements.iterator().forEachRemaining(item -> results.add(host + item.attributes().get("href")));
+        return results;
+    }
+
+    public Element getElement(String selector, int position) {
+        Elements elements = document.select(selector);
+        return elements.get(position);
+    }
+
+    public List<String> findLinkByElement(Element element, String selector, String host) {
+        List<String> results = new ArrayList<>();
+        Elements elements = element.select(selector);
         elements.iterator().forEachRemaining(item -> results.add(host + item.attributes().get("href")));
         return results;
     }

@@ -25,6 +25,8 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Agrithon" target="1.8" />
+      <module name="agrithon" target="1.8" />
       <module name="crawler" target="1.8" />
       <module name="MahoutExample" target="1.8" />
       <module name="untitled" target="1.8" />

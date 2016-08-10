@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MahoutExample.iml" filepath="$PROJECT_DIR$/MahoutExample.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Agrithon.iml" filepath="$PROJECT_DIR$/Agrithon.iml" />
     </modules>
   </component>
 </project>
