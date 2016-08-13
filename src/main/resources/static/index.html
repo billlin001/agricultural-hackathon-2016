@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="app" >
 
 <head>
     <meta charset="utf-8">
@@ -38,59 +38,99 @@
     </style>
 </head>
 
-<body ng-app="app">
+<body ng-controller="MainController">
     <!-- nav bar -->
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                    aria-controls="navbar">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                     <span class="sr-only"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
+                    <!--<span class="icon-bar"></span>-->
                 </button>
-                <a class="navbar-brand" href="./index.html">美食菜籃</a>
+                <a class="navbar-brand" href="./index.html">四次元口袋菜籃</a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li ng-class="{active:isSearch}"><a href="#" ng-click="showSearch()">查詢</a></li>
+                    <li ng-class="{active:isResult}"><a href="#" ng-click="showResult()">結果</a></li>
+                    <!--<li><a href="#contact">Contact</a></li>-->
                 </ul>
-            </div><!--/.nav-collapse -->
+            </div>
         </div>
     </nav>
 
     <!-- container -->
-    <div class="container" ng-controller="MainController">
-             <div>
-             <h2 >請輸入食材</h2>
-                 <input type="text" placeholder="例如: 高麗菜" required ng-model="ingredient" ng-keypress="enter($event)">
-                 <button class="btn btn-default" type="button" ng-click="add()">輸入</button>
-             </div>
+    <div class="container">
+        <div class="row"></div>
+        <div></div>
+        <div ng-show="isSearch">
+            <h2 >請輸入食材</h2>
+            <div>
+                <input type="text" placeholder="例如: 高麗菜" required ng-model="ingredient" ng-keypress="enter($event)">
+                <button class="btn btn-default" type="button" ng-click="add()">輸入</button>
+            </div>
 
-             <h3 >你選擇的食材有：</h3>
+            <h3 >你選擇的食材有：</h3>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="item in ingredients track by $index">{{item}}</li>
+                </ul>
+            </div>
+        
+             <buttn class="btn btn-default" type="submit" ng-click="search()">查詢</buttn>
+             <buttn class="btn btn-default" type="button" ng-click="resetSearch()">清除</buttn>
+        </div>
 
-             <div>
-                 <ul class="list-group">
-                    <li class="list-group-item" ng-repeat="item in ingredients">{{item}}</li>
-                 </ul>
-             </div>
+
+        <div ng-show="isResult">
+            <h2>你選擇的食材有：</h3>
+            <div>
+                <ul class="list-group">
+                    <li class="list-group-item" ng-repeat="item in ingredients track by $index">{{item}}</li>
+                </ul>
+            </div>
+
+            <h2>推薦食材：</h2>
+            <div>
+                <li class="list-group-item" ng-repeat="item in recommendIngredients track by $index">
+                    <label>
+                        <input type="checkbox" ng-model="item.isSelect">
+                        {{item.name}}
+                    </label><br/>
+                </li>
+            </div>
+
+            <div ng-show="showRecipe">
+                <h2>推薦食譜：</h2>
+                <div ng-repeat="recipe in recommendRecipes">
+                    <h3>{{recipe.name}}</h3>
+                    <ul class="list-group">
+                        <li class="list-group-item" ng-repeat="item in recipe.ingredients">{{item}}</li>
+                    </ul>
+                </div>
+            </div>
+            <br>
+
+            <buttn class="btn btn-default" type="button" ng-click="recommend()">推薦食譜</buttn>
+            <buttn class="btn btn-default" type="button" ng-click="resetResult()">清除</buttn>
+
             
-            <buttn class="btn btn-default" type="submit" ng-click="search()">查詢</buttn>
+        </div>
+
     </div><!-- /.container -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="./assets/js/vendor/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
     <script src="./dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script>
     <!-- Angular depedency -->
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="./assets/js/angular.min.js"></script>
     <!-- main js files -->
     <script src="./app.js"></script>
 </body>

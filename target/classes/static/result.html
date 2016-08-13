@@ -64,14 +64,14 @@
 
     <!-- container -->
     <div class="container" ng-controller="ResultController">
-             <div>
-             <h2>推薦食譜：</h2>
-             <div ng-repeat="recipe in queryResults">
-                 <h3>{{recipe.name}}</h3>
-                 <ul class="list-group">
-                     <li class="list-group-item" ng-repeat="item in recipe.ingredient">{{item}}</li>
-                 </ul>
-             </div>
+
+        <h2>推薦食譜：</h2>
+        <div ng-repeat="recipe in queryResults">
+            <h3>{{recipe.name}}</h3>
+            <ul class="list-group">
+                <li class="list-group-item" ng-repeat="item in recipe.ingredient">{{item}}</li>
+            </ul>
+        </div>
 
     </div><!-- /.container -->
 
